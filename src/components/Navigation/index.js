@@ -11,15 +11,11 @@ return(
         <div className="head">
         <input type="text" id="search" value={searchNav} onChange={(e)=> setSearch(e.target.value)} placeholder="Type a movie"></input>
         
-        <a href="">Home</a>
+        <a href="" className="home">Home</a>
         <a href="">My List</a>
         <button type="submit">Sign in</button>
         </div>
-     
-        
-
     </div>
 )
-
 }
 export default NavigationBar

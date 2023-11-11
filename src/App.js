@@ -5,6 +5,8 @@ import NavigationBar from './components/Navigation';
 import { useState,useEffect } from 'react';
 import { getCategory, getMovies } from './utils/utilities';
 import CategoryList from './components/CategoryList';
+import Footer from './components/Footer';
+import ImageSlide from './components/ImageSlides';
 
 
 function MoviesApp ({movies,loading,category,setCategory}){
@@ -13,8 +15,11 @@ function MoviesApp ({movies,loading,category,setCategory}){
 
   <>
     <NavigationBar searchNav={search}setSearch={setSearch} />
+    <ImageSlide/>
     <CategoryList category ={category} setCategory={setCategory}/>
     <MovieList search ={search} movies={movies} loading = {loading} />
+
+    <Footer/>
 
   
   </>
@@ -54,3 +59,4 @@ return(
 }
 
 export default App;
+

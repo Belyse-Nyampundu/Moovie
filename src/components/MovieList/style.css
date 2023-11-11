@@ -3,6 +3,7 @@
 .image-container{
     display: grid;
     grid-template-columns: repeat(4,1fr);
+
 }
 .images img{
     width: 70%;

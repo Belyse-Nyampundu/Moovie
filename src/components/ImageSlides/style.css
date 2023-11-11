@@ -1,0 +1,27 @@
+.image p{
+    color: white;
+}
+
+.image-containers {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .image-slide {
+    width: 91%;
+    height: 700px; /* Adjust the height to your desired value */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 80px;
+  }
+  
+  .image-title {
+    color: white;
+    font-size: 24px;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }

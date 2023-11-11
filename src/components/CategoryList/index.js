@@ -1,76 +1,13 @@
-
-// import React from "react"
-// import './style.css'
-
-// const CategoryList = ({category,setCategory}) =>{
-
-//     const activeCategory = {
-//         backgroundColor:"yellow"
-//     }
-
-
-
-
-
-//  return(
-//    <div className="">
-//     <h2>Categories</h2>
-//     <button style={category == ""? activeCategory:null} onClick={()=>setCategory("")}> All </button>
-//     <button  style={category == "35"? activeCategory:null} onClick={()=>setCategory("35")}>Comedy</button>
-//     <button style={category == "28"? activeCategory:null}  onClick={()=>setCategory("28")}>Action</button>
-//     <button style={category == "10770"? activeCategory:null} onClick={()=>setCategory("10770")}>Arabic</button>
-//     <button style={category == "18"? activeCategory:null} onClick={()=>setCategory("18")}>Series</button>
-//    </div>
-//  )
-// }
-
-// export default CategoryList
-
-// import { useEffect, useState } from "react";
-// import React,{useState,useEffect} from "react";
-// // import '.style/css';
-
-// const CategoryList =({category,setCategory}) =>{
-// const[genres,setGenres] = useState([]);
-
-// useEffect(()=>{
-//     const apiKey = "6a98dfba7067a7b293ef1635bcc15256"
-
-// // fetch(`https://api.themoviedb.org/3/genre/movie/list?apikey=${apiKey}`)
-//     fetch(`https://api.themoviedb.org/3/genre/movie/list?apikey=${apiKey}` )
-//     .then(response => response.json())
-//     .then(response => setGenres(response.genres))
-//     .catch(error => console.error("Error fetching genres",error));
- 
-// },[])
-// const activeCategory = {
-// backgroundColor:"cyan"
-// };
-// return(
-//     <div>
-//         <button style={category === "" ? activeCategory:null} onClick={()=> setCategory("")}>All</button>
- 
-
-//     {genres.length > 0 && genres.map(genre => (
-//         <button key={genre.id}
-//         style={category === genre.id.toString() ? activeCategory :null} onClick={() => setCategory(genre.id.toString())}> {genre.name.toUpperCase()}
-//         </button>
-//     ))}
-// </div>
-// )
-// }
-
-// export default CategoryList;
-
-
 import React, { useState, useEffect } from "react";
+import './style.css'
 
 const CategoryList = ({ category, setCategory }) => {
   const [genres, setGenres] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [showAllCategories, setShowAllCategories] = useState(false);
 
   useEffect(() => {
-    const apiKey = "6a98dfba7067a7b293ef1635bcc15256";
+    const apiKey = "0d612d26ed3173de12a35fdfb44374c5";
 
     fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}`)
       .then(response => response.json())
@@ -86,7 +23,11 @@ const CategoryList = ({ category, setCategory }) => {
   }, []);
 
   const activeCategory = {
-    backgroundColor: "cyan",
+    backgroundColor: "#f0ae27",
+  };
+
+  const toggleShowAllCategories = () => {
+    setShowAllCategories(!showAllCategories);
   };
 
   if (loading) {
@@ -94,30 +35,41 @@ const CategoryList = ({ category, setCategory }) => {
   }
 
   return (
-    <div>
+    <div className="category-box">
       <button
         style={category === "" ? activeCategory : null}
-        onClick={() => setCategory("")}
-      >
+        onClick={() => setCategory("")}>
         All
       </button>
 
-      {genres?.length > 0 &&
-        genres.map(genre => (
-          <button
-            key={genre.id}
-            style={
-              category === genre.id.toString() ? activeCategory : null
-            }
-            onClick={() => setCategory(genre.id.toString())}
-          >
-            {genre.name.toUpperCase()}
-          </button>
-        ))}
+      {showAllCategories
+        ? genres?.length > 0 &&
+          genres.map(genre => (
+            <button
+              key={genre.id} style={
+                category === genre.id.toString() ? activeCategory : null
+              }
+              onClick={() => setCategory(genre.id.toString())} >
+              {genre.name.toUpperCase()}
+            </button>
+          )) : genres?.length > 0 &&
+          genres.slice(0, 5).map(genre => (
+            <button
+              key={genre.id}style={
+              category === genre.id.toString() ? activeCategory : null}
+              onClick={() => setCategory(genre.id.toString())}
+            >
+              {genre.name.toUpperCase()}
+            </button>
+          ))}
+          
+      {genres?.length > 5 && (
+        <button onClick={toggleShowAllCategories}>
+          {showAllCategories ? "Show Less" : `+${genres.length - 5} More`}
+        </button>
+      )}
     </div>
   );
 };
 
 export default CategoryList;
-
-

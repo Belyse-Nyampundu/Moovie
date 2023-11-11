@@ -1,1 +1,8 @@
 
+.category-box button{
+ width: 5%;
+ height: 2em;
+ border-radius: 5%;
+ border: none;
+ margin-right: 20px;
+}

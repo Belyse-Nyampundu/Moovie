@@ -1,0 +1,20 @@
+
+footer{
+    color: white;
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    font-size: 90%;
+    margin: 5% 7% 5% 7%;
+}
+footer span{
+    color: #f0ae27;
+}
+h1{
+    font-size: 20px;
+}
+p{
+    font-size: 15px;
+}
+.moovie{
+    font-size: 2em;
+}

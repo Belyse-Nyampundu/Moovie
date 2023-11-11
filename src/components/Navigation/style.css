@@ -4,21 +4,45 @@
 .nav{
     display: grid;
     grid-template-columns: repeat(2,1fr);
+  
 }
 .nav h1{
     /* padding-right:80% ; */
-    padding-left: 50%
+    padding-left: 20%;
+    font-size: 3em;
+    color: white
+    ;
+    
 }
 .nav i{
 width: 20px;
 
 }
 .head{
-    margin-top: 3.4%;
-    padding-right: 20px;
-    
-
+    margin-top: 6%;
 }
 .head a{
-    text-decoration: none;    text-decoration: none;
+    text-decoration: none;  
+    margin-left: 3%;
+    color: white;
+}
+.head input{
+    width: 30em;
+    height: 2.5em;
+    border-radius: 5px;
+    border: none;
+    padding: 7px;
+
+}
+.head button{
+  margin-left:  10%;
+  padding: 8px 20px;
+  border-radius: 5px;
+  background-color: #f0ae27;
+  border: none;
+  color: white;
+}
+
+.nav .home{
+    color: #f0ae27;
 }

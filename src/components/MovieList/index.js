@@ -4,6 +4,7 @@ import ImageContainer from "../../atoms/Image-container";
 import './style.css'
 
 const IMAGE_BASE_URL = process.env.REACT_APP_IMAGE_BASE_URL
+
 const MovieList = ({search,movies,loading}) => {
 const [selectedMovie,setSelectedMovie]= useState()
   
