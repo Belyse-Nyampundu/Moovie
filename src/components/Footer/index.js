@@ -6,6 +6,7 @@ import { FaInstagram } from "react-icons/fa";
 import { FaWhatsapp } from "react-icons/fa";
 
 
+
 const Footer = () =>{
 
     return(
@@ -38,10 +39,10 @@ const Footer = () =>{
                   <span><FaWhatsapp/></span>   <span><FaInstagram/></span>  <span><FaFacebookF/></span>
                 </div>
 
-                <div>
+                <div className="icons">
                     <h1>Share Website Via:</h1>
-                    <p> <FaFacebookF/> Facebook</p>
-                    <p> <span><FaInstagram/></span>  Instagram</p>
+                    <p> <FaFacebookF className="icon"/> Facebook</p>
+                    <p> <span><FaInstagram className="icon"/></span>  Instagram</p>
                 </div>
             </footer>
         </div>

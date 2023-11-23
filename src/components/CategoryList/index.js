@@ -1,24 +1,26 @@
 import React, { useState, useEffect } from "react";
-import './style.css'
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import "./style.css";
 
 const CategoryList = ({ category, setCategory }) => {
   const [genres, setGenres] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [showAllCategories, setShowAllCategories] = useState(false);
 
   useEffect(() => {
     const apiKey = "0d612d26ed3173de12a35fdfb44374c5";
 
     fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}`)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         if (data && data.genres) {
           setGenres(data.genres);
         } else {
           console.error("Invalid API response: Missing genres data");
         }
       })
-      .catch(error => console.error("Error fetching genres", error))
+      .catch((error) => console.error("Error fetching genres", error))
       .finally(() => setLoading(false));
   }, []);
 
@@ -26,48 +28,48 @@ const CategoryList = ({ category, setCategory }) => {
     backgroundColor: "#f0ae27",
   };
 
-  const toggleShowAllCategories = () => {
-    setShowAllCategories(!showAllCategories);
-  };
-
   if (loading) {
     return <div>Loading...</div>;
   }
 
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: genres.length >= 10 ? 10 : genres.length, // Reduced to 3 slides at a time
+    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: genres.length >= 2 ? 2 : genres.length, // Adjust for smaller screens
+        },
+      },
+    ],
+  };
+
   return (
     <div className="category-box">
-      <button
-        style={category === "" ? activeCategory : null}
-        onClick={() => setCategory("")}>
-        All
-      </button>
-
-      {showAllCategories
-        ? genres?.length > 0 &&
-          genres.map(genre => (
-            <button
-              key={genre.id} style={
-                category === genre.id.toString() ? activeCategory : null
-              }
-              onClick={() => setCategory(genre.id.toString())} >
-              {genre.name.toUpperCase()}
-            </button>
-          )) : genres?.length > 0 &&
-          genres.slice(0, 5).map(genre => (
-            <button
-              key={genre.id}style={
-              category === genre.id.toString() ? activeCategory : null}
-              onClick={() => setCategory(genre.id.toString())}
-            >
-              {genre.name.toUpperCase()}
-            </button>
-          ))}
-          
-      {genres?.length > 5 && (
-        <button onClick={toggleShowAllCategories}>
-          {showAllCategories ? "Show Less" : `+${genres.length - 5} More`}
+      <Slider {...settings}>
+        <button
+          key="all"
+          className={`category-btn ${category === "" ? "active" : ""}`}
+          onClick={() => setCategory("")}
+    
+        >
+          All
         </button>
-      )}
+        {genres.map((genre) => (
+          <button
+            key={genre.id}
+            className={`category-btn ${category === genre.id.toString() ? "active" : ""}`}
+            onClick={() => setCategory(genre.id.toString())}
+
+          >
+            {genre.name.toUpperCase()}
+          </button>
+        ))}
+      </Slider>
     </div>
   );
 };

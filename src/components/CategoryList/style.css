@@ -1,8 +1,15 @@
+/* Add these styles to your CSS file */
 
-.category-box button{
- width: 5%;
- height: 2em;
- border-radius: 5%;
- border: none;
- margin-right: 20px;
-}
+.category-box button {
+    width: 5%;
+    height: 2em;
+    border-radius: 5%;
+    border: none;
+    margin-right: 20px;
+  }
+  
+  /* Add a specific style for the active button if needed */
+  .category-box button.active {
+    background-color: #f0ae27;
+  }
+  
